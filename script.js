@@ -313,15 +313,14 @@ today = yyyy + '-' + mm + '-' + dd;
 
 // TEN DAYS EARLIER
 
-let date = new Date()
-
-var daysAgo = new Date(date.getTime());
-
-daysAgo.setDate(date.getDate() - 9);
-
+var daysAgo = new Date();
+daysAgo.setDate(daysAgo.getDate()-9);
 var dd = String(daysAgo.getDate()).padStart(2, '0');
 var mm = String(daysAgo.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = daysAgo.getFullYear();
+console.log(typeof dd)
+console.log(typeof mm)
+console.log(typeof yyyy)
 
 daysAgo = yyyy + '-' + mm + '-' + dd;
 
@@ -339,6 +338,8 @@ let data
 let request = async () => {
     let response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=UkgRiB5b97SHhYV6yabVu1GEZEDXUTmaHo1zFH16&start_date=${daysAgo}&end_date=${customDate}`)
     data = await response.json()
+    console.log(data)
+
     let type = data[9].media_type
     title.innerText = `${data[9].title}`
 
@@ -365,15 +366,15 @@ subTitle8.innerText = `${data[1].title}`
 subTitle9.innerText = `${data[0].title}`
 
 
-subDate = `${data[8].date}`
-subDate2 = `${data[7].date}`
-subDate3 = `${data[6].date}`
-subDate4 = `${data[5].date}`
-subDate5 = `${data[4].date}`
-subDate6 = `${data[3].date}`
-subDate7 = `${data[2].date}`
-subDate8 = `${data[1].date}`
-subDate9 = `${data[0].date}`
+subDate = data[8].date
+subDate2 = data[7].date
+subDate3 = data[6].date
+subDate4 = data[5].date
+subDate5 = data[4].date
+subDate6 = data[3].date
+subDate7 = data[2].date
+subDate8 = data[1].date
+subDate9 = data[0].date
 
 
     let subTitles = document.getElementsByClassName('desc');
@@ -561,7 +562,10 @@ if ( subDate != `${data[9].date}`) {
 
 }
 }
-function  fetchGallery2(num){
+function  fetchGallery2( num){
+
+
+
     if ( subDate2 != `${data[9].date}` ) {
     
         dateInput.value = subDate2
@@ -697,7 +701,7 @@ function  fetchGallery3(num){
     }
 
 
-dateInput.addEventListener('focusout', userInput)
+dateInput.addEventListener('input', userInput)
 linkToTop.addEventListener('click', function() { fetchGallery(8); })
 linkToTop2.addEventListener('click', function() { fetchGallery2(7); })
 linkToTop3.addEventListener('click', function() { fetchGallery3(6); })
