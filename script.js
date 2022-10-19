@@ -14,7 +14,8 @@ document.getElementById("menu").append(dateInput);
 
 dateInput.type = "date";
 dateInput.min = "1995-06-05";
-dateInput.max = new Date();
+dateInput.max = new Date().toISOString().split("T")[0];
+dateInput.value = new Date().toISOString().split("T")[0];
 
 let logo = document.createElement("img");
 document.getElementById("menu").append(logo);
